@@ -1,13 +1,22 @@
+import Button from "./Components/Button"
+import ToggleDarkMode from "./Components/ToggleDarkMode"
+import MultiSelectElement from "./Components/MultiSelectElement"
 
+import HTMLIcon from "../src/assets/images/icon-html.svg"
+
+import "./App.css"
 
 function App() {
   
   return (
-    <>
-      <h1 className="text-3xl font-bold underline font-rubik">
-      Hello world!
-      </h1>
-    </>
+    <div className="p-4 flex flex-col gap-4">
+      <Button text="Submit Answer"/>
+      <ToggleDarkMode />
+      
+      <div>
+        <MultiSelectElement img={HTMLIcon} text={"HTML"} context={false}/>
+      </div>
+    </div>
   )
 }
 
