@@ -3,9 +3,7 @@
     align-items: center;
     justify-content: space-between;
     width: 150px; /* Adjust width as needed */
-    border: 2px solid #F4F6FA; /* Border for the button */
     padding: 5px; /* Padding inside the button */
-    background-color: #F4F6FA; /* Light grey background */
     cursor: pointer; /* Change cursor on hover */
   }
   
@@ -47,6 +45,7 @@
     background-color: #A729F5;
     color: white;
   }
+
 
   .multiSelect:hover > .iconnic > span{
     color: white;
