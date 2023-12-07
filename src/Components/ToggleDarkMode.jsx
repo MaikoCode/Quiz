@@ -18,7 +18,7 @@ export default function ToggleDarkMode() {
     }
 
     return (
-        <button className="toggle-container" onClick={toggleMode}>
+        <button className="toggle-container noSelect" onClick={toggleMode}>
             <img src={darkMode ? IconSunLight : IconSunDark} alt="Light mode icon" className="icon" />
             <div className="toggle">
                 <div className={`toggle-slider ${darkMode ? 'toggled' : ''}`}></div>

@@ -1,3 +1,15 @@
+body {
+  transition: background-color 0.5s ease;
+  background-color: #F4F6FA; 
+}
+
+
+.dark {
+  transition: background-color 0.5s ease;
+  background-color: #313E51;  
+}
+
+
 .toggle-container {
     display: flex;
     align-items: center;
@@ -51,3 +63,7 @@
     color: white;
   }
   
+
+  .noSelect{
+    -webkit-tap-highlight-color: transparent;
+  }

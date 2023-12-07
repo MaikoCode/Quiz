@@ -3,7 +3,7 @@
 
 export default function MultiSelectElement({ img, text, context }) {
   return (
-    <button className="flex items-center w-full md:w-[300px] p-2 bg-white shadow-md rounded-xl multiSelect dark:dark:bg-dark-blue-gray my-2">
+    <button className="flex items-center w-full  p-2 bg-white shadow-md rounded-xl multiSelect dark:dark:bg-dark-blue-gray my-2">
       {context ? (
         <div className="bg-salmon bg-opacity-10 mr-6 rounded-lg">
           <img src={img} alt="icon" className="p-1 w-10 h-10" />

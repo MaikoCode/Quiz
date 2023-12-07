@@ -20,6 +20,14 @@ export default {
         'green': "#26D782",
         'salmon': "#EE5454"
       },
+      backgroundImage: {
+      'pattern-background-desktop-light': "url(./assets/images/pattern-background-desktop-light.svg)",
+      'pattern-background-desktop-dark': "url(./assets/images/pattern-background-desktop-dark.svg)",
+      'pattern-background-mobile-light': "url(./assets/images/pattern-background-mobile-light.svg)",
+      'pattern-background-mobile-dark': "url(./assets/images/pattern-background-mobile-dark.svg)",
+      'pattern-background-tablet-light': "url(./assets/images/pattern-background-tablet-light.svg)",
+      'pattern-background-tablet-dark': "url(./assets/images/pattern-background-tablet-dark.svg)",
+      }
     },
   },
   darkMode: 'class',
