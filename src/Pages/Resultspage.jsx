@@ -1,6 +1,9 @@
+import Layout from "../Components/Layout"
 
 export default function Resultspage() {
   return (
-    <div>Resultspage</div>
+   <Layout>
+    
+   </Layout>
   )
 }

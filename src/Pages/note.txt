@@ -1,0 +1,116 @@
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Layout from "../Components/Layout";
+import QuizJsonData from "../data.json";
+
+export default function Quizpage() {
+  const theme = useSelector((state) => state.theme.value);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const quizData = QuizJsonData.quizzes.find(quiz => quiz.title === theme);
+  const question = quizData.questions[currentQuestionIndex]; // Get the current question
+
+  const handleClickAnswer = (option) => {
+    setSelectedAnswer(option);
+    setShowAnswer(false); // Hide answer on new selection
+  };
+  
+  const handleSubmit = () => {
+    setShowAnswer(true); // Show the answer check
+  };
+  
+  const handleNextQuestion = () => {
+    setSelectedAnswer('');
+    setShowAnswer(false);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+  
+  const getOptionClass = (option) => {
+    if (!showAnswer) return ''; // No additional class if answer is not shown
+    return option === question.answer ? 'correct-answer' : (option === selectedAnswer ? 'wrong-answer' : '');
+  };
+
+  return (
+    <Layout>
+      <div className="flex flex-col xl:flex-row">
+        <div className="xl:w-[45%] xl:mr-[5%] xl:ml-[5%] mb-16">
+          <span className="block dark:text-blue text-gray italic">
+            Question {currentQuestionIndex + 1} of {quizData.questions.length}
+          </span>
+          <h1 className="text-5xl dark:text-white mb-4">
+            {question.question}
+          </h1>
+        </div>
+
+        <div className="flex flex-col xl:w-[45%]">
+          {question.options.map((option, index) => (
+            <button
+              key={index}
+              className={`option ${getOptionClass(option)}`}
+              onClick={() => handleClickAnswer(option)}
+              disabled={showAnswer}
+            >
+              {option}
+            </button>
+          ))}
+          <button onClick={handleSubmit} disabled={showAnswer || !selectedAnswer}>
+            Submit Answer
+          </button>
+          {showAnswer && (
+            <button onClick={handleNextQuestion}>
+              Next Question
+            </button>
+          )}
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+
+--------------------------------------------------------------------------------------
+
+
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Layout from "../Components/Layout";
+import QuizJsonData from "../data.json";
+import { incrementScore, resetScore } from '../features/scoreSlice';
+
+export default function Quizpage() {
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.value);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const quizData = QuizJsonData.quizzes.find(quiz => quiz.title === theme);
+  const question = quizData.questions[currentQuestionIndex]; // Get the current question
+
+  useEffect(() => {
+    // Reset the score when the quiz mounts or the theme changes
+    dispatch(resetScore());
+  }, [dispatch, theme]);
+
+  const handleClickAnswer = (option) => {
+    setSelectedAnswer(option);
+    setShowAnswer(false); // Hide answer on new selection
+  };
+
+  const handleSubmit = () => {
+    setShowAnswer(true);
+    if (selectedAnswer === question.answer) {
+      dispatch(incrementScore()); // Increment score if the answer is correct
+    }
+  };
+
+  const handleNextQuestion = () => {
+    setSelectedAnswer('');
+    setShowAnswer(false);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  // ... rest of the code remains the same
+}

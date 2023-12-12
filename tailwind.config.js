@@ -18,7 +18,7 @@ export default {
         'dark-white': "#F4F6FA",
         'white': "#FFFFFF",
         'green': "#26D782",
-        'salmon': "#EE5454"
+        'salmon': "#EE5454",
       },
       backgroundImage: {
       'pattern-background-desktop-light': "url(./assets/images/pattern-background-desktop-light.svg)",
