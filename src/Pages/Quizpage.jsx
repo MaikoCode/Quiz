@@ -35,10 +35,17 @@ export default function Quizpage() {
   }
 
   const getOptionClass = (option) => {
-    if(!showAnswer) return ''
-    return option === question.answer ? "correct-answer" : (option === selectedAnswer) ? "wrong-answer" : ''
+    if (showAnswer) {
+      if (option === question.answer) {
+        return "correct-answer";
+      } else if (option === selectedAnswer) {
+        return "wrong-answer";
+      }
+    } else {
+      return option === selectedAnswer ? "selected-answer" : '';
+    }
+    return '';
   }
-
   return (
     <Layout>
       
@@ -83,7 +90,7 @@ export default function Quizpage() {
               {showAnswer && (
                 <button
                 onClick={handleNextQuestion}
-                className='bg-violet p-4 text-lg text-white font-bold rounded-2xl hover:opacity-50 dar:hover:opacity-70 mt-4'>
+                className='bg-violet p-4 text-lg text-white font-bold rounded-2xl hover:opacity-50 darks:hover:opacity-70 mt-4'>
                     Next Question
               </button>
 

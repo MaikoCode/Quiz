@@ -81,4 +81,7 @@
             border: 2px solid theme('colors.salmon');
         }
       
+        .selected-answer{
+            border: 2px solid theme('colors.violet');
+        }
 }
