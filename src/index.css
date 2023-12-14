@@ -77,11 +77,43 @@
             border: 2px solid theme('colors.green');
         }
 
+        .correct-bg{
+          background-color: theme('colors.green') !important;
+          
+        }
+
+        .txt{
+          color: theme('colors.white');
+        }
+
         .wrong-answer{
             border: 2px solid theme('colors.salmon');
         }
-      
+
+        .incorrect-bg{
+          background-color: theme('colors.salmon') !important;
+          
+        }
+
         .selected-answer{
-            border: 2px solid theme('colors.violet');
+            border: 2px solid theme('colors.violet') ;
+        }
+
+        .progress-bar {
+          background-color: theme('colors.white');
+          padding: 3px;
+          border-radius: 13px;
+          height: 10px;
+          width: 100%;
+        }
+
+        .dark .progress-bar {
+          background-color: theme('colors.dark-blue-gray');
+        }
+        
+        .progress {
+          background-color: theme('colors.violet');
+          height: 100%;
+          border-radius: 13px;
         }
 }
