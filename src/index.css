@@ -58,11 +58,31 @@
           border: 2px solid #A729F5
         }
       
+        /* .multiSelect-button:hover{
+            box-shadow: 2px 2px 2px 2px #A729F5;
+        } */
+
+        /* .multiSelect-button:hover:has(:active){
+          box-shadow: none;
+      } */
+
+
+      
         .multiSelect:hover > .iconnic{
           background-color: #A729F5;
           color: white;
         }
       
+        .multiSelect:hover:has(.correct-answer) > .iconnic{
+          border: 2px solid theme('colors.green');
+          
+        }
+
+        .multiSelect:hover:has(.wrong-answer) > .iconnic{
+          border: 2px solid theme('colors.salmon');
+          
+        }
+        /* Ici */
       
         .multiSelect:hover > .iconnic > span{
           color: white;
@@ -83,7 +103,7 @@
         }
 
         .txt{
-          color: theme('colors.white');
+          color: theme('colors.white') !important;
         }
 
         .wrong-answer{
@@ -116,4 +136,6 @@
           height: 100%;
           border-radius: 13px;
         }
+        
+
 }

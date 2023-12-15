@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function MultiSelectElement({ img, text, context }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const Thetheme = useSelector((state) => state.theme.value);
+  let Thetheme = useSelector((state) => state.theme.value);
 
   useEffect(() => {
     console.log('Nouveau thème :', Thetheme);
@@ -14,9 +14,8 @@ export default function MultiSelectElement({ img, text, context }) {
 
   const handleSelection = (chooseTheme) => {
     dispatch(choosenTheme(chooseTheme));
-    if (Thetheme) {
-      navigate(`/quiz/${Thetheme}`);
-    }
+    navigate(`/quiz/${chooseTheme.value}`);
+    // The problem here is the when I selected the theme is I don't have the update in my current variable theme
   };
 
  

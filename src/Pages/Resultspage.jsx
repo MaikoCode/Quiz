@@ -2,20 +2,24 @@ import Layout from "../Components/Layout"
 import { useSelector, useDispatch } from "react-redux"
 import { resetScore } from "../store/scoreSlice"
 import QuizJsonData from "../data.json"
+import { useNavigate } from "react-router-dom"
 
 
 export default function Resultspage() {
   const theme = useSelector((state) => state.theme.value)
   // const theme = "Accessibility"
   const iconTheme = useSelector((state) => state.theme.icon)
-  const score = useSelector((state) => state.value.score)
+  const score = useSelector((state) => state.score.value)
   // const score = 8
   const dispatch = useDispatch()
   const quizData = QuizJsonData.quizzes.find(quiz => quiz.title === theme)
+  const navigate = useNavigate()
 
 
   const handleSubmit = () => {
     dispatch(resetScore())
+    navigate("/")
+
   }
 
   return (

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom"
 
 export default function Quizpage() {
   const theme = useSelector((state) => state.theme.value)
+  console.log("Defintion theme:", theme)
   const dispatch = useDispatch()
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -19,14 +20,18 @@ export default function Quizpage() {
 
   const quizData = QuizJsonData.quizzes.find(quiz => quiz.title === theme)
   const question = quizData.questions[currentQuestionIndex]
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleClickAnswer = (option) => {
-    setSelectedAnswer(option)
-    setShowAnswer(false)
+    if(!isSubmitted){
+      setSelectedAnswer(option)
+      setShowAnswer(false)
+    }
   }
 
   const handleSubmit = () => {
     if(selectedAnswer){
+      setIsSubmitted(true);
       setShowAnswer(true)
       setHasAttemptedSubmit(false)
       if(selectedAnswer === question.answer ){
@@ -40,6 +45,7 @@ export default function Quizpage() {
   const handleNextQuestion  = () => {
     setSelectedAnswer('')
     setShowAnswer(false)
+    setIsSubmitted(false);
     setCurrentQuestionIndex(currentQuestionIndex + 1)
     if(currentQuestionIndex + 1 === quizData.questions.length){
       navigate("/results")
@@ -63,17 +69,20 @@ export default function Quizpage() {
   const renderIconWithBackground = (option) => {
     let icon = null;
     let bgClass = '';
-    let txtClass = 'txt'
+    let txtClass = ''
   
     if (showAnswer) {
       if (option === question.answer) {
         icon = <img src={IconCorrect} alt="Correct icon" />;
         bgClass = 'correct-bg';
+        txtClass = 'txt'
        
       } else if (option === selectedAnswer) {
         icon = <img src={IconIncorrect} alt="Incorrect icon" />;
         bgClass = 'incorrect-bg';
+        txtClass = 'txt'
       }
+      
     }
   
     return { icon, bgClass, txtClass };
@@ -81,7 +90,6 @@ export default function Quizpage() {
 
   return (
     <Layout>
-      
       <div className="flex flex-col xl:flex-row">
               <div className="xl:w-[45%] xl:mr-[5%] xl:ml-[5%] mb-16">
               <span className="block  dark:text-blue text-gray italic">Question {currentQuestionIndex + 1} of
@@ -108,9 +116,9 @@ export default function Quizpage() {
                       >
                           <div className="flex items-center ">
                             <div className={`bg-gray dark:bg-white bg-opacity-10 mr-6 rounded-lg iconnic ${bgClass}`}>
-                              <span className="font-bold text-gray dark:text-gray uppercase block h-10 w-10 py-1.5">a</span>
+                              <span className={`font-bold text-gray dark:text-gray uppercase block h-10 w-10 py-1.5 ${txtClass}`}>a</span>
                             </div>
-                            <span className={`text-dark-gray dark:text-white ${txtClass} font-bold block py-3 `}>{option}</span>
+                            <span className="text-dark-gray dark:text-white font-bold block py-3">{option}</span>
                           </div>
                           {icon}
                       </button>
@@ -131,7 +139,7 @@ export default function Quizpage() {
                 <button
                 onClick={handleNextQuestion}
                 className='bg-violet p-4 text-lg text-white font-bold rounded-2xl hover:opacity-50 darks:hover:opacity-70 mt-4'>
-                    Next Question
+                    {currentQuestionIndex + 1 === quizData.questions.length ? "Score": "Next Question"}
               </button>
 
               )}
@@ -143,7 +151,6 @@ export default function Quizpage() {
                   </p>
                 )
               }
-
               </div>
             </div>  
           <div>

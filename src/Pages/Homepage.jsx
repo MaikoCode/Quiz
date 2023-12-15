@@ -12,7 +12,7 @@ export default function Homepage() {
           <h1
           className="text-5xl dark:text-white mb-4">Welcome to the <span className="font-bold xl:block xl:w-[500px]">Frontend Quiz!</span></h1>
 
-          <span className="block  dark:text-blue text-gray italic">Pick a subject to get started</span>
+          <span className="block  dark:text-blue text-gray italic">Pick a subject to get started.</span>
         </div>
 
         <div className="flex flex-col xl:w-[45%]">
@@ -20,6 +20,7 @@ export default function Homepage() {
           QuizJsonData.quizzes.map((quiz, index) => {
             return <MultiSelectElement key={index} img={quiz.icon} text={quiz.title}  context={true}/>
           })
+          // It misses a dispatch in this component I think
           }
         </div>
       </div>
