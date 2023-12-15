@@ -7,7 +7,7 @@ import "./App.css"
 
 function App() {  
   return (
-    <Router>
+    <Router basename="/Quiz/" >
       <Routes>
         <Route path="/"  element={<Homepage />}/>
         <Route path="/quiz/:id" element={<Quizpage />} />
